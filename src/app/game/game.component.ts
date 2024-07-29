@@ -1,18 +1,28 @@
 import { Component } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrl: './game.component.css'
+  styleUrl: './game.component.css',
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void => *', [
+        animate(500)
+      ])
+    ])
+  ]
 })
 export class GameComponent {
 
-  board:string[];
+  board: (string | null)[];
   currentPlayer:string;
-  winner:string;
+  winner: string | null;
 
   constructor(){
-
+this.newGame();
   }
 
   newGame(){
@@ -52,5 +62,8 @@ if(!this.board[idx] && !this.winner){
     }
 
     return false;
+  }
+  isDraw(): boolean {
+    return this.board.every(cell => cell !== null);
   }
 }
