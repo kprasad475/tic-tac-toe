@@ -1,19 +1,18 @@
 <div class="game-container">
-    <mat-card>
-      <mat-card-title>Tic Tac Toe</mat-card-title>
-      <mat-card-content>
-        <p>Player {{ currentPlayer }}'s turn</p>
-        <mat-grid-list cols="3" rowHeight="100px">
-          <mat-grid-tile *ngFor="let cell of board; let idx = index" (click)="makeMove(idx)">
-            <div class="cell" [ngClass]="{'x': cell === 'X', 'o': cell === 'O'}" [@fadeIn]="cell">{{ cell }}</div>
-          </mat-grid-tile>
-        </mat-grid-list>
-        <p *ngIf="winner" [@fadeIn]="'winner'">Player {{ winner }} wins!</p>
-        <p *ngIf="!winner && isDraw()" [@fadeIn]="'draw'">It's a draw!</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="newGame()">New Game</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  
+  <mat-card>
+    <mat-card-title>Tic Tac Toe</mat-card-title>
+    <mat-card-content>
+      <p>Player {{ currentPlayer }}'s turn</p>
+      <div class="board">
+        <div class="cell" *ngFor="let cell of board; let idx = index" (click)="makeMove(idx)">
+          <span [ngClass]="{'x': cell === 'X', 'o': cell === 'O'}">{{ cell }}</span>
+        </div>
+      </div>
+      <p *ngIf="winner">Player {{ winner }} wins!</p>
+      <p *ngIf="!winner && isDraw()">It's a draw!</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="newGame()">New Game</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

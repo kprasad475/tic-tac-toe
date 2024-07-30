@@ -18,7 +18,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class GameComponent {
 
   board: (string | null)[];
-  currentPlayer:string;
+  currentPlayer: 'X' | 'O' = 'X';
   winner: string | null;
 
   constructor(){
